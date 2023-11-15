@@ -31,6 +31,6 @@ console.log(addn(3,4))
 const addTwo=(num1,num2)=>(num1+num2+2) //yeh bahut imp baat hai ki agar main parenthesis mei likhta hoon fxn ki return value to mujhe return keyword use karne ki zarurat nahin hai but agar main parenthesis use karunga to I should have to use return keyword...remember this
 console.log(addTwo(2,3))
 //object ko return karne ke liye parenthesis lagaana hi padega
-const returnObject=()=>({username:"Aman"})
+const returnObject=()=>({username:"Aman"}) //yeh parenthesis ek block bana dete hain
 console.log(returnObject()) //agar maine upar ewaali line mei parenthesis nahin lagaaya hota to answer aata undefined
 
