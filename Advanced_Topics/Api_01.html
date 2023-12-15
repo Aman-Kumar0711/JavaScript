@@ -1,0 +1,39 @@
+<!-- XMLHttpRequest (XHR) objects are used to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing. -->
+<!-- pehle XML request bheji jaati thi API's ke through data nikaalne ke liye usme states hoti hain and khair ab to fetch() use kar lete hain but yeh XML req bahut widely use hota tha pehle and yeh sab AJAX programming mei help karta hai, AJAX is Advanced Javascript and XML -->
+<!-- Despite its name, XMLHttpRequest can be used to retrieve any type of data, not just XML.
+If your communication needs to involve receiving event data or message data from a server, consider using server-sent events through the EventSource interface. For full-duplex communication, WebSockets may be a better choice. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest(); //basically hum ek object banaate hain...XMLHttpRequest use karte hain hum mainly xml req bhejne ke liye...
+    xhr.open('GET', requestUrl) //achha to open jo hai wahi bhejta hai request jiske andar ki 2 parameter hote hain ek to kis type ki req and dusra ek string jisme ki data hota hai...
+    //btw open apne aap call nahin hota hai we have to use .send() 
+    xhr.onreadystatechange = function(){ //onreadystatechange yeh ek function leta hai jo ki bataata hai ki jab state change ho to kya karna hai and states change hoti rehti hain continously jo ki upar body mei likhi hui hain humne...
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText) //main current context ki baat kar rha hoon isliye this use kiya and response aata hai jab bhi hum req bhejte hain to wahi humne responseText ka naam de diya hai hum aman etc kuchh bhi naam de sakte hain bas yahi dhyaan rakhna hai ki yeh current context ki baat ho rahi hai to we have used this....and jab bhi response aata hai URL se(most of the times) woh string form mei aata hai hence we have parsed that isno JSON format i.e., JavaScript Object Notation..ab iska type object hoga and now mujhe kuchh bhi chahiye hoga to main bas yeh .(jo cheez chahiye) likhke nikaal sakta hoon simple...
+            console.log(typeof data);
+            console.log(data.followers);
+        }
+    }
+    xhr.send();
+</script>
+</html>
+
+
+
+
+<!-- ab karte hain thodi mazedaar baat, yeh jo console.log hum log use karte hain woh core JS ka part hai hi nahin yeh sab to web ke dev tools hain jo ki runtime mei inject hote hain and wahin hum use karte hain inko...JS ko run karne ke bahut se engines hain jisme sabse zyada used hai v8 engine, usi ke andar defined hain yeh sab console.log and getElementById and querySelector etc woh bhi C++ language mei but bahut hi zyada advanced form mei...yahaan per API ka matlab hai C++ system and JS system interact kar rahe hain... -->
