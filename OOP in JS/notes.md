@@ -23,7 +23,7 @@ Object literals
 
 ## 4 Pillars
 
-Abstraction=> details hide kar lena, jiss se behind the scene kya ho rha hai na dikhe e.g fetch()
-Encapsulation=> wrap up kar dena cheezon ko jiss se kya kya accessible ho and kya nahin woh clear ho jaaye
-Inheritance=>
-Polymorphism=>Many forms...matlab ek hi cheez kai jagah kaam kar rahi hai
+- Abstraction=> details hide kar lena, jiss se behind the scene kya ho rha hai na dikhe e.g fetch()
+- Encapsulation=> wrap up kar dena cheezon ko jiss se kya kya accessible ho and kya nahin woh clear ho jaaye
+- Inheritance=>
+- Polymorphism=>Many forms...matlab ek hi cheez kai jagah kaam kar rahi hai
