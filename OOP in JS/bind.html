@@ -1,0 +1,33 @@
+<!-- isme bind ke baare mei jaanenge -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    class React {
+        constructor(){
+            this.library = "React"
+            this.server = "https://localhost:300"
+
+            //requirement
+            document
+                .querySelector('button')
+                .addEventListener('click', this.handleClick.bind(this)) //bina bind lagaaye iss method ko access karunga to mere paas button ka reference to aayega but baaki ki cheezein access nahin ho paa rahi hain uske liye mujhe baaki saare this ka bhi reference  dena padega na isliye main forecefully bata raha hoon ki saare aur references(maane variables and functions and aur kahin ke reference) ko bind kar do iske saath...kuchh bhi override nahin ho rha hai
+                //21st line mei pehle waala this reference de rha hai button ka jo body mei define ki hai baaki bind waala 'this' reference de rha hai class React ke andar defined cheezon ka aisa mujhe lagta hai... 
+
+        }
+        handleClick(){
+            console.log("button clicked");
+            console.log(this.server); 
+        }
+    }
+
+    const app = new React()
+</script>
+</html>
