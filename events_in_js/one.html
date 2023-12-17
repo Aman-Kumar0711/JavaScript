@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<!-- events humesha kisi activity per invoke hote hain jaise mouse ka movement ya click ya kuchh aur -->
+<script>
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // } iss approach mei dikkat yeh hai ki kai baar click ko pehchaan nahin paata browser so basically kehne ka taatparya yeh hai ki yeh onclick propagation ki suvidha nahin deta ...isliye we use eventListener, usme propogation bhi aa jaata hai...
+
+
+     // attachEvent()
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log("clicked inside the ul");
+    // }, false)  
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log("owl clicked");
+    //     e.stopPropagation()   //yeh karte hi event bubble hoke upar ke element per nahin jaayega, yahin per ruk jaayega
+    // }, false) //yeh abhi tak ki best approach hai...yeh 3rd parameter(false/true) bhi zaruri hota hai, kai baar kuchh basic si cheezein bina isko consider kare hoti hi nahin hain, yeh event bubbling and event capturing do cheezon ki baat karta hai, hum kaise event ko propogate karein ya kaise event ko rokein yeh karta hai yeh 3rd parameter...zyadater to event bubbling hi hoti hai...bubbling jaata hai neeche se upar, matlab ki neeche ka code pehle and capturing hoti hai upar se neeche...to true karunga to event capturing hoti and false karunga to bubbling..and by default false hi hota hai...
+    
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault(); //iss se uska default action prevent ho jaayega
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+   
+
+    //bubbling mei basically hota yeh hai ki pehle neeche waali cheez execute hoti hai then upar waali, agar mujhe upar waali cheez nahin execute karwaani hai to main neeche waali per stopPropagation() laga dunga and agar main chahta hoon ki upar se neeche execution ho to main third parameter ko true kar dunga... 
+    //for example iss case mei ul ki id images hai matlab ki uspe kiya hua action har li per valid hoga , to yeh hai upar waali cheez and baaki iske andar jo li hain woh hain neeche waali cheezein simple...
+    
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode //li hoga e.target ki parent node...agar main uspe click kar dunga to poori ki poori ul hi hatt jaayengi ek hi baar mei , isliye yeh if waali condition lagaayi jiss se ki jab main image per click karu tabhi woh remove ho
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
+</html>

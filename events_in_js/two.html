@@ -1,0 +1,30 @@
+<!-- isme hum async js ke projects banaayenge -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayAman = function(){
+        console.log("Aman");
+    }
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "best JS series"
+    }
+
+    const changeMe = setTimeout(changeText, 2000)  //setTimeout ek method/function hi hai per woh API ko call karta hai basically core JS function nahin hai browser ya aur kisi API ke through milte hain... clearInterval and clearTimeout bhi same type ki cheez hain...
+    //isme time comma ke baad diya jaata hai and pehle hota hai fxn jo ki bataayega ki given time ke baad kya kaam ho...here time is given in ms so 2000ms means 2s...achha per setInterval mei hota hai ki given time interval ke baad woh continously aapne jo cheez kahi hai usko karta jaayega...
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe) //iss se hua yeh ki stop button per maine tap kar diya to clear ho jaayega Timeout basically jo cheez honi thi 2s baad woh nahin hogi...bhai agar Timeout set kiya hai to usko hataana bhi to aana chahiye...haan per clearTimeout mei reference dena padta hai ki kaunse Timeout ko clear karna hai...
+        //haan per yeh tabhi hoga jab maine Timeout mei jo time de rakha hai uss se pehle stop button tap karu otherwise to jo setTimeout mei kaam de rakha tha woh ho ho jaayega...
+        console.log("STOPPED")
+    })
+</script>
+</html>

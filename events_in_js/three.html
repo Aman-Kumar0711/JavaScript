@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+
+    //const intervalId = setInterval(sayDate, 1000, "hi") //setInterval mei 3rd parameter bhi de sakte hain jaise idhar humne ek string as a third parameter le li hai...
+
+    //clearInterval(intervalId) //setInterval ko hataane ke liye we use clearInterval
+    //ab mujhe yeh kaam karna hai ki jaise hi maine start button per tap karu to printing waala kaam chaalu ho jaaye and jaise hi stop per tap karu to woh ruk jaaye...
+
+    let intervalId;
+    document.querySelector('#start').addEventListener('click',function(){
+        intervalId=setInterval(sayDate, 1000, "hi");
+        
+    })  
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearInterval(intervalId);
+
+     })
+    
+    
+
+</script>
+</html>
