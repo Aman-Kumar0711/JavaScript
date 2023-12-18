@@ -1,0 +1,99 @@
+<!-- isme closure and lexical scoping ki baat karenge...closure ke baare mei jaan ne ke liye humko lexical scoping padhna hi padta hai... -->
+
+<!-- A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.Iska matlab hai ki outer fxn mei jo humne variables and properties define ki hain unka access bhi  mil jaata hai inner function mei -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+    <script>
+    // function init() {
+    //     let name = "Mozilla"; 
+    //     function displayName() {
+    //         console.log(name); 
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+
+    // init() creates a local variable called name and a function called displayName(). The displayName() function is an inner function that is defined inside init() and is available only within the body of the init() function. Note that the displayName() function has no local variables of its own. However, since inner functions have access to the variables of outer functions, displayName() can access the variable name declared in the parent function, init().
+    //basicall hua yeh hai ki agar main ek function ke andar ek aur function define karta hoon to andar waale function ke scope mei un saare variables and properties ka access hota hai jo outer function ke scope mei hoti hain...
+
+
+    // function outer(){
+    //     let username = "hitesh"
+    //     console.log("OUTER", secret);
+    //     function inner(){
+    //         let secret = "my123"
+    //         console.log("inner", username);
+    //     }
+    //     function innerTwo(){
+    //         console.log("innerTwo", username);
+    //         console.log(secret);
+    //     }
+    //     inner()
+    //     innerTwo()
+
+    // }
+    // outer()
+    // console.log("TOO OUTER", username);
+
+
+    // function makeFunc() {
+    //     const name = "Mozilla";
+    //     function displayName() {
+    //         console.log(name);
+    //     }
+    //     return displayName;  //iska matlab hai ki jab bhi main makeFunc ko call karunga to usme sirf execution context nahin poora lexical scope jaa raha hoga tabhi to uske andar ka displayName() function call hoke return ho paayega...oterwise makeFunc ke andar to displayName() naam ka jo function define kar rakha hai woh wahin simat ke khatam ho jaana chahiye tha(basically uska execution context hatt jaana chahiye tha fxn ke baahar jaate hi)
+    // }
+
+
+    // const myFunc = makeFunc();
+    // myFunc(); 
+
+    // Running this code has exactly the same effect as the previous example of the init() function above. What's different (and interesting) is that the displayName() inner function is returned from the outer function before being executed.
+
+    // At first glance, it might seem unintuitive that this code still works. In some programming languages, the local variables within a function exist for just the duration of that function's execution. Once makeFunc() finishes executing, you might expect that the name variable would no longer be accessible. However, because the code still works as expected, this is obviously not the case in JavaScript.
+
+    // The reason is that functions in JavaScript form closures. A closure is the combination of a function and the lexical environment within which that function was declared. This environment consists of any local variables that were in-scope at the time the closure was created. In this case, myFunc is a reference to the instance of the function displayName that is created when makeFunc is run. The instance of displayName maintains a reference to its lexical environment, within which the variable name exists. For this reason, when myFunc is invoked, the variable name remains available for use, and "Mozilla" is passed to console.log.
+
+
+
+
+    </script>
+    <script>
+
+        //yahaan practical example de rahe hain closure ka
+
+        //maine upar body mei 2 button bana rakhe hain and main chahta hoon ki orange naam ki button per click karu to bgc orange ho jaye and green waali ke liye color green ho jaaye...
+        // document.getElementById("orange").onclick = function(){
+        //     document.body.style.backgroundColor = `orange`
+        // }
+        // document.getElementById("green").onclick = function(){
+        //     document.body.style.backgroundColor = `green`
+        // } 
+        //yeh code mera sahi hai but bhai aise maan lo 40-50 button hoti to har kisi ke liye alag alag thode hi likhte ...to main ek function bana leta hoon clickHandler naam ka...
+
+        function clickHandler(color){
+            // document.body.style.backgroundColor = `${color}` //agar main sirf yeh likh deta to uss se mera clickHandler naam ka function sirf execute ho rha hota and kuchh return nahin karta per .onclick ko to bhai ek function chahiye hota hai na = ke baad ..main isko aise de dunga to already executed form mei jaayega to main jo kaam chahta hoon woh hoga hi nahin... 
+
+            return function(){
+                document.body.style.backgroundColor = `${color}` //but agar maine closure ya lexical scoping nahin padha hota to main samajh hi nahin paata ki jab main isko return kar raha hoon to iska poora lexical scope jaayega 
+            }
+        }
+
+        document.getElementById('orange').onclick = clickHandler("orange")
+        document.getElementById('green').onclick = clickHandler("green")
+
+    </script>
+</html>
